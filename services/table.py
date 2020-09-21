@@ -11,7 +11,7 @@ from googleapiclient import discovery
 
 def table(info):
     table={
-    'Казань':   'https://docs.google.com/spreadsheets/d/1kaAMjkOSWiS3DeUi4J7sKuZy8ow9eht5re_7Ydsg_ZU/export?format=xlsx&id=1kaAMjkOSWiS3DeUi4J7sKuZy8ow9eht5re_7Ydsg_ZU',
+    'Казань':   'https://docs.google.com/spreadsheets/d/1EhE-amKJjSLcu5KMZNbIzotWpbAoYF5GbgZ9VIKueKc/export?format=xlsx&id=1EhE-amKJjSLcu5KMZNbIzotWpbAoYF5GbgZ9VIKueKc',
     'Москва':   'https://docs.google.com/spreadsheets/d/1dhTz3mTVYd1y9KqdCd1KUbY0AmyaZhVdOQ6qTX9b9C4/export?format=xlsx&id=1dhTz3mTVYd1y9KqdCd1KUbY0AmyaZhVdOQ6qTX9b9C4',
     }
     #получаем доступ к гугл таблице
@@ -54,38 +54,39 @@ def table(info):
     for house in info:
         if(len(info[house])!=0):
             for month in info[house]:
-                if month_code[month]>datetime.datetime.now().month:
-                    year=datetime.datetime.now().year+1
-                else:
-                    year=datetime.datetime.now().year
-                for d in info[house][month]:
-                    day=int(d)
-                    date=datetime.date(year, m, day)
-                    scip=0
-                    col=30
-                    for row in wb.rows:
-                        if scip==0:
-                            scip+=1
-                            continue
-                        if str(row[col].value).split(' ')[0]==str(date):
-                            for r in wb.rows:
-                                if (r[441].value).split("*", '')==house:
-                                    DATA = {'requests': [{'repeatCell':
-                                            {'range': 
-                                                { 
-                                                'startRowIndex': 0, # номер строки (нумерация с 0) с которой включительно будет применено форматирование
-                                                'endRowIndex': 1, # номер строки до которой будет применено форматирование, не включительно
-                                                    
-                                                'startColumnIndex': 0, # номер столбца (нумерация с 0)…
-                                                'endColumnIndex': 1
-                                                },
-                                            
-                                            'cell':  {'userEnteredFormat': {'backgroundColor': {'red': 0}}},
+                if len(info[house][month])!=0:
+                    if month_code[month]>datetime.datetime.now().month:
+                        year=datetime.datetime.now().year+1
+                    else:
+                        year=datetime.datetime.now().year
+                    for d in info[house][month]:
+                        day=int(d)
+                        date=datetime.date(year, m, day)
+                        scip=0
+                        col=30
+                        for row in wb.rows:
+                            if scip==0:
+                                scip+=1
+                                continue
+                            if str(row[col].value).split(' ')[0]==str(date):
+                                for r in wb.rows:
+                                    if (r[441].value).split("*", '')==house:
+                                        DATA = {'requests': [{'repeatCell':
+                                                {'range': 
+                                                    { 
+                                                    'startRowIndex': 0, # номер строки (нумерация с 0) с которой включительно будет применено форматирование
+                                                    'endRowIndex': 1, # номер строки до которой будет применено форматирование, не включительно
+                                                        
+                                                    'startColumnIndex': 0, # номер столбца (нумерация с 0)…
+                                                    'endColumnIndex': 1
+                                                    },
+                                                
+                                                'cell':  {'userEnteredFormat': {'backgroundColor': {'red': 0}}},
 
-                                            'fields': 'userEnteredFormat', # другие параметры форматирования ячейки будут сброшены
-                                        }}
-                                        ]}
-                                    service.spreadsheets().batchUpdate(spreadsheetId = spreadsheet['spreadsheetId'], body=DATA).execute()
+                                                'fields': 'userEnteredFormat', # другие параметры форматирования ячейки будут сброшены
+                                            }}
+                                            ]}
+                                        service.spreadsheets().batchUpdate(spreadsheetId = '1EhE-amKJjSLcu5KMZNbIzotWpbAoYF5GbgZ9VIKueKc', body=DATA).execute()
 
 
                 
