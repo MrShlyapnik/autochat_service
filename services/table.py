@@ -89,8 +89,8 @@ def table(info):
     f.write(r.content)
     f.close()
 
-    wb=openpyxl.load_workbook(town+'.xlsx', read_only=True, data_only=True)
-    wb=wb["даты (копия) (копия)"]
+    wb=openpyxl.load_workbook(town+'.xlsx',  data_only=True)
+    date_list=wb["даты (копия) (копия)"]
     sheet=sheet.get_worksheet(5)
     month_code={
         'январь':1,
@@ -116,7 +116,7 @@ def table(info):
             for month in info[house]:
                 if len(info[house][month])!=0:
                     m=month_code[month]
-                    if month_code[month]>datetime.datetime.now().month:
+                    if month_code[month]<datetime.datetime.now().month:
                         year=datetime.datetime.now().year+1
                     else:
                         year=datetime.datetime.now().year
@@ -125,18 +125,23 @@ def table(info):
                         date=datetime.date(year, m, day)
                         scip=0
                         col=30
-                        for row in wb.rows:
+                        stop=True
+                        date_list=wb["даты (копия) (копия)"]
+                        for row in date_list.rows:
                             if scip==0:
                                 scip+=1
                                 continue
                             # print(str(row[col].value).split(' ')[0])
                             # print(str(date))
                             
-                            while stop:
-                               
+                            while stop==True:
+                                print(date)
+                                print(str(row[col].value).split(' ')[0])
                                 if str(row[col].value).split(' ')[0]==str(date):
                                     print('1')
-                                    for r in wb.rows:
+                                    row_number=-1
+                                    for r in date_list.rows:
+                                        row_number+=1
                                         print("2")
                                         print(r[441].value)
                                         print(house)
@@ -145,11 +150,11 @@ def table(info):
                                                     {'range': 
                                                         { 
                                                             "sheetId":162702674,
-                                                        'startRowIndex': 0, # номер строки (нумерация с 0) с которой включительно будет применено форматирование
-                                                        'endRowIndex': 1, # номер строки до которой будет применено форматирование, не включительно
+                                                        'startRowIndex': row_number, # номер строки (нумерация с 0) с которой включительно будет применено форматирование
+                                                        'endRowIndex': row_number+1, # номер строки до которой будет применено форматирование, не включительно
                                                             
-                                                        'startColumnIndex': 0, # номер столбца (нумерация с 0)…
-                                                        'endColumnIndex': 1
+                                                        'startColumnIndex': col, # номер столбца (нумерация с 0)…
+                                                        'endColumnIndex': col+1
                                                         },
                                                     
                                                     'cell':  {'userEnteredFormat': {'backgroundColor': {'red': 0,
@@ -162,6 +167,8 @@ def table(info):
                                             service.spreadsheets().batchUpdate(spreadsheetId = '1EhE-amKJjSLcu5KMZNbIzotWpbAoYF5GbgZ9VIKueKc', body=DATA).execute()
                                             print('3')
                                             stop=False
+                                            break
 
                                 col+=1
+                            break
 

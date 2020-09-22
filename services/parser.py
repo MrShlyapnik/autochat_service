@@ -194,4 +194,4 @@ for h in info:
         for t in info[h]:
             if(len(info[h][t])>0):
                 print(str(t)+"             "+str(info[h][t]))
-table(info)
+# table(info)
