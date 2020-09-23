@@ -19,7 +19,7 @@ def api_ls():
         '79274226911'
 
     ]
-    date='2020-09-22 01:00:00'
+    date='2020-09-23 01:00:00'
     control_date=datetime.datetime.strptime(date, '%Y-%m-%d %H:%M:%S')
     messages_array={}
     for number in owner_phone:
@@ -57,7 +57,7 @@ def api_chat():
          '79655896555-1527783737@g.us',
 
     ]
-    date='2020-09-22 01:00:00'
+    date='2020-09-23 01:00:00'
     control_date=datetime.datetime.strptime(date, '%Y-%m-%d %H:%M:%S').timestamp()
     messages_array={}
     for number in owner_phone:

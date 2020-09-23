@@ -63,7 +63,7 @@ def parser(message, phone,wb):
     '79656012318':
     {
         'бавария':{},
-        'контсантиновка':{},
+        'конcтантиновка':{},
         'панорама':{},
     },
     '79872974084':
@@ -109,10 +109,11 @@ def parser(message, phone,wb):
             'сосновый':{},
             'панорама':{},
             'апартаменты':{},
+             'дятлово':{},
     },
     '79655888066-1485072828@g.us':
     {
-        'новый':{},
+        '3новый':{},
         'малый':{},
             'большой':{},
     },
@@ -253,6 +254,10 @@ def parser(message, phone,wb):
     house=""
     month=""
     for word in message.split(" "):
+        if word=='8казанка':
+            house=""
+            month="" 
+            continue       
         if word not in info[phone]:
             if word.lower() not in months:
                 if word.isdigit():
