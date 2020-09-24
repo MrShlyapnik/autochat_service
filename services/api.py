@@ -16,14 +16,16 @@ def api_ls():
         '79047619866',
         '79656012318',
         '79872974084',
-        '79274226911'
+        '79274226911',
+        '79050212617'
 
     ]
     date='2020-09-23 01:00:00'
-    date=datetime.datetime.now()-datetime.timedelta(seconds=9000)
+    date=datetime.datetime.now()-datetime.timedelta(seconds=36000)
     control_date=date
     messages_array={}
     for number in owner_phone:
+        print(number)
         messages_array[number]=[]
         data={
         'provider':'whatsapp',
@@ -34,9 +36,13 @@ def api_ls():
         id=(response)
         id=int(id['data']['conversation']['external_id'])
         response=requests.get("https://api.pact.im/p1/companies/"+pact_id+"/conversations/"+str(id)+"/messages?sort_direction=desc", headers=headers).json()
+        print('pact')
+        print(len(response['data']['messages']))
         for message in response['data']['messages']:
             message_time=message['created_at'].replace("T", " ").replace("Z", "").split('.')[0]
             message_time=datetime.datetime.strptime(message_time, '%Y-%m-%d %H:%M:%S')
+            print(message_time)
+            print(control_date)
             if message_time>control_date:
                 
                 if message['income']:
@@ -59,7 +65,7 @@ def api_chat():
 
     ]
     date='2020-09-23 01:00:00'
-    date=(datetime.datetime.now()-datetime.timedelta(seconds=9000)).timestamp()
+    date=(datetime.datetime.now()-datetime.timedelta(seconds=36000)).timestamp()
     control_date=date
     messages_array={}
     for number in owner_phone:
