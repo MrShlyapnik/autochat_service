@@ -20,7 +20,7 @@ def api_ls():
 
     ]
     date='2020-09-23 01:00:00'
-    date=datetime.datetime.now()-datetime.timedelta(seconds=3800)
+    date=datetime.datetime.now()-datetime.timedelta(seconds=9000)
     control_date=date
     messages_array={}
     for number in owner_phone:
