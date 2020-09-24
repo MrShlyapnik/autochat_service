@@ -31,15 +31,21 @@ if (datetime.datetime.now()-last).total_seconds()>=3600:
 
     for message in messages_array:
         # print(message)
-        for m in messages_array[message]:
-            parser(m,message, wb)
+        try:
+            for m in messages_array[message]:
+                parser(m,message, wb)
+        except:
+            print('error')
     messages_array=api_chat()
     print('Load')
 
     for message in messages_array:
         # print(message)
-        for m in messages_array[message]:
-            parser(m,message, wb)
+        try:
+            for m in messages_array[message]:
+                parser(m,message, wb)
+        except:
+            print('error')
 
     r = requests.get(table[town])
     f = open('../katalog_bot/Vtripe/'+town+'_date.xlsx', 'wb')
