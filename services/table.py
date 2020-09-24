@@ -158,7 +158,7 @@ def table(info,phone, wb):
         #     'чайка2': '*Самосырова 2*',
     }
     table={
-    'Казань':   'https://docs.google.com/spreadsheets/d/1EhE-amKJjSLcu5KMZNbIzotWpbAoYF5GbgZ9VIKueKc/export?format=xlsx&id=1EhE-amKJjSLcu5KMZNbIzotWpbAoYF5GbgZ9VIKueKc',
+    'Казань':   'https://docs.google.com/spreadsheets/d/1JIstqYbaPS6ZkzbH7AmZ0xeb7VbMpmA6GrhPiZ5r5iY/export?format=xlsx&id=1JIstqYbaPS6ZkzbH7AmZ0xeb7VbMpmA6GrhPiZ5r5iY',
     'Москва':   'https://docs.google.com/spreadsheets/d/1dhTz3mTVYd1y9KqdCd1KUbY0AmyaZhVdOQ6qTX9b9C4/export?format=xlsx&id=1dhTz3mTVYd1y9KqdCd1KUbY0AmyaZhVdOQ6qTX9b9C4',
     }
     #получаем доступ к гугл таблице
@@ -170,7 +170,7 @@ def table(info,phone, wb):
     service = discovery.build('sheets', 'v4', http = httpAuth)
 
     file = gspread.authorize(credentials)  # authenticate with Google
-    sheet = file.open_by_url("https://docs.google.com/spreadsheets/d/1EhE-amKJjSLcu5KMZNbIzotWpbAoYF5GbgZ9VIKueKc/edit#gid=162702674")
+    sheet = file.open_by_url("https://docs.google.com/spreadsheets/d/1JIstqYbaPS6ZkzbH7AmZ0xeb7VbMpmA6GrhPiZ5r5iY/edit#gid=955783345")
 
     # town='Казань'
     # r = requests.get(table[town])
@@ -219,7 +219,7 @@ def table(info,phone, wb):
                         scip=0
                         col=30
                         stop=True
-                        date_list=wb["даты (копия) (копия)"]
+                        date_list=wb["даты"]
                         for row in date_list.rows:
                             if scip==0:
                                 scip+=1
@@ -242,7 +242,7 @@ def table(info,phone, wb):
                                             DATA = {'requests': [{'repeatCell':
                                                     {'range': 
                                                         { 
-                                                            "sheetId":162702674,
+                                                            "sheetId":955783345,
                                                         'startRowIndex': row_number, # номер строки (нумерация с 0) с которой включительно будет применено форматирование
                                                         'endRowIndex': row_number+1, # номер строки до которой будет применено форматирование, не включительно
                                                             
@@ -258,12 +258,12 @@ def table(info,phone, wb):
                                                     'fields': 'userEnteredFormat', # другие параметры форматирования ячейки будут сброшены
                                                 }}
                                                 ]}
-                                            if r[col].fill.fgColor.rgb=="FF38761D":
+                                            if r[col].fill.fgColor.rgb=="FF38761D" or r[col].fill.fgColor.rgb=="FF93C47D":
                                                 stop=False
                                                 break
-                                            service.spreadsheets().batchUpdate(spreadsheetId = '1EhE-amKJjSLcu5KMZNbIzotWpbAoYF5GbgZ9VIKueKc', body=DATA).execute()
+                                            service.spreadsheets().batchUpdate(spreadsheetId = '1JIstqYbaPS6ZkzbH7AmZ0xeb7VbMpmA6GrhPiZ5r5iY', body=DATA).execute()
                                             print('3')
-                                            # time.sleep(5)
+                                            time.sleep(5)
                                             stop=False
                                             break
 

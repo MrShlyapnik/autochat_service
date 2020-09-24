@@ -1,28 +1,43 @@
 from services.parser import parser
 from services.api import api_ls, api_chat
 import requests
+import datetime
 import openpyxl
 table={
-    'Казань':   'https://docs.google.com/spreadsheets/d/1EhE-amKJjSLcu5KMZNbIzotWpbAoYF5GbgZ9VIKueKc/export?format=xlsx&id=1EhE-amKJjSLcu5KMZNbIzotWpbAoYF5GbgZ9VIKueKc',
+    'Казань':   'https://docs.google.com/spreadsheets/d/1JIstqYbaPS6ZkzbH7AmZ0xeb7VbMpmA6GrhPiZ5r5iY/export?format=xlsx&id=1JIstqYbaPS6ZkzbH7AmZ0xeb7VbMpmA6GrhPiZ5r5iY',
     'Москва':   'https://docs.google.com/spreadsheets/d/1dhTz3mTVYd1y9KqdCd1KUbY0AmyaZhVdOQ6qTX9b9C4/export?format=xlsx&id=1dhTz3mTVYd1y9KqdCd1KUbY0AmyaZhVdOQ6qTX9b9C4',
     }
 # messages_array=api_ls()
-town='Казань'
-r = requests.get(table[town])
-f = open(town+'.xlsx', 'wb')
-f.write(r.content)
-f.close()
 
-wb=openpyxl.load_workbook(town+'.xlsx',  data_only=True)
-f=open('services/text.txt', encoding="utf-8")
-text=f.read()
-parser(text, '79178767741-1419363809@g.us', wb)
-# for message in messages_array:
-#     # print(message)
-#     for m in messages_array[message]:
-#         parser(m,message, wb)
-# messages_array=api_chat()
-# for message in messages_array:
-#     # print(message)
-#     for m in messages_array[message]:
-#         parser(m,message, wb)
+f=open('time.txt','r')
+last=f.read()
+f.close()
+last=datetime.datetime.strptime(last, '%Y-%m-%d %H:%M:%S')
+print("Check date")
+if (datetime.datetime.now()-last).total_seconds()>=3600:
+    print("Start")
+    town='Казань'
+    r = requests.get(table[town])
+    f = open(town+'.xlsx', 'wb')
+    f.write(r.content)
+    f.close()
+
+    wb=openpyxl.load_workbook(town+'.xlsx',  data_only=True)
+
+    for message in messages_array:
+        # print(message)
+        for m in messages_array[message]:
+            parser(m,message, wb)
+    messages_array=api_chat()
+    for message in messages_array:
+        # print(message)
+        for m in messages_array[message]:
+            parser(m,message, wb)
+
+    r = requests.get(table[town])
+    f = open('../katalog_bot/Vtripe/'+town+'_date.xlsx', 'wb')
+    f.write(r.content)
+    f.close()
+    f=open('time.txt','w')
+    f.write(str(datetime.datetime.now()).split('.')[0])
+    f.close()
