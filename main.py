@@ -23,6 +23,7 @@ if (datetime.datetime.now()-last).total_seconds()>=3600:
     f.close()
 
     wb=openpyxl.load_workbook(town+'.xlsx',  data_only=True)
+    messages_array=api_ls()
 
     for message in messages_array:
         # print(message)
