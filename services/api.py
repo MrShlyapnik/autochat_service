@@ -59,7 +59,7 @@ def api_chat():
 
     ]
     date='2020-09-23 01:00:00'
-    date=(datetime.datetime.now()-datetime.timedelta(seconds=3800)).timestamp()
+    date=(datetime.datetime.now()-datetime.timedelta(seconds=9000)).timestamp()
     control_date=date
     messages_array={}
     for number in owner_phone:
