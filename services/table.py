@@ -238,7 +238,7 @@ def table(info,phone, wb):
                                         # print("2")
                                         # print(r[441].value)
                                         # print(house)
-                                        if str(r[441].value)==full_name[phone][house]:
+                                        if str(r[27].value)==full_name[phone][house]:
                                             DATA = {'requests': [{'repeatCell':
                                                     {'range': 
                                                         { 
