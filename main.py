@@ -12,6 +12,7 @@ table={
 f=open('time.txt','r')
 last=f.read()
 f.close()
+print(last)
 last=datetime.datetime.strptime(last, '%Y-%m-%d %H:%M:%S')
 print("Check date")
 if (datetime.datetime.now()-last).total_seconds()>=3600:
