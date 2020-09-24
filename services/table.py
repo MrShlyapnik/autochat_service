@@ -179,7 +179,7 @@ def table(info,phone, wb):
     # f.close()
 
     # wb=openpyxl.load_workbook(town+'.xlsx',  data_only=True)
-    date_list=wb["даты (копия) (копия)"]
+    date_list=wb["даты"]
     sheet=sheet.get_worksheet(5)
     month_code={
         'январь':1,
