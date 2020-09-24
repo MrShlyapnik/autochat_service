@@ -15,9 +15,10 @@ f.close()
 last=datetime.datetime.strptime(last, '%Y-%m-%d %H:%M:%S')
 print("Check date")
 if (datetime.datetime.now()-last).total_seconds()>=3600:
-    print("Start")
+    print("Start main")
     town='Казань'
     r = requests.get(table[town])
+    print('Load')
     f = open(town+'.xlsx', 'wb')
     f.write(r.content)
     f.close()
