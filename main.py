@@ -27,12 +27,15 @@ if (datetime.datetime.now()-last).total_seconds()>=3600:
 
     wb=openpyxl.load_workbook(town+'.xlsx',  data_only=True)
     messages_array=api_ls()
+    print('Load')
 
     for message in messages_array:
         # print(message)
         for m in messages_array[message]:
             parser(m,message, wb)
     messages_array=api_chat()
+    print('Load')
+
     for message in messages_array:
         # print(message)
         for m in messages_array[message]:
@@ -45,3 +48,4 @@ if (datetime.datetime.now()-last).total_seconds()>=3600:
     f=open('time.txt','w')
     f.write(str(datetime.datetime.now()).split('.')[0])
     f.close()
+    print('End')
