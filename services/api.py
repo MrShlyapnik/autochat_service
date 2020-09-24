@@ -20,7 +20,8 @@ def api_ls():
 
     ]
     date='2020-09-23 01:00:00'
-    control_date=datetime.datetime.strptime(date, '%Y-%m-%d %H:%M:%S')
+    date=datetime.datetime.now()-datetime.timedelta(seconds=3800)
+    control_date=date
     messages_array={}
     for number in owner_phone:
         messages_array[number]=[]
@@ -58,7 +59,8 @@ def api_chat():
 
     ]
     date='2020-09-23 01:00:00'
-    control_date=datetime.datetime.strptime(date, '%Y-%m-%d %H:%M:%S').timestamp()
+    date=(datetime.datetime.now()-datetime.timedelta(seconds=3800)).timestamp()
+    control_date=date
     messages_array={}
     for number in owner_phone:
         messages_array[number]=[]
