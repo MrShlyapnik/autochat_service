@@ -16,7 +16,7 @@ print(last)
 last=last.replace('\n', '')
 last=datetime.datetime.strptime(last, '%Y-%m-%d %H:%M:%S')
 print("Check date")
-if (datetime.datetime.now()-last).total_seconds()>=3600:
+if (datetime.datetime.now()-last).total_seconds()>=1800:
     print("Start main")
     town='Казань'
     r = requests.get(table[town])
