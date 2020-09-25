@@ -6,3 +6,4 @@ venv.
 *.db
 __*
 *test*
+time.txt

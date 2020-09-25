@@ -202,6 +202,7 @@ def table(info,phone, wb):
     for house in info[phone]:
         if house=='8казанка':
             continue
+        print(house)
         stop=True
         if(len(info[phone][house])!=0):
             for month in info[phone][house]:
@@ -219,6 +220,8 @@ def table(info,phone, wb):
                         last_day=int(d)
                         day=int(d)
                         date=datetime.date(year, m, day)
+                        if date<datetime.datetime.now().date():
+                            continue
                         scip=0
                         col=30
                         stop=True
@@ -234,6 +237,7 @@ def table(info,phone, wb):
                                 # print(d
                                 # ate)
                                 # print(str(row[col].value).split(' ')[0])
+                                # print(date)
                                 if str(row[col].value).split(' ')[0]==str(date):
                                     # print('1')
                                     row_number=-1

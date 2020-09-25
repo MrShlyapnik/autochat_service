@@ -41,12 +41,12 @@ if (datetime.datetime.now()-last).total_seconds()>=1800:
     print(len(messages_array))
     for message in messages_array:
         print(messages_array[message])
-        try:
-            for m in messages_array[message]:
-                print("Parser")
-                parser(m,message, wb)
-        except:
-            print('error')
+        # try:
+        for m in messages_array[message]:
+            print("Parser")
+            parser(m,message, wb)
+        # except:
+        #     print('error')
 
     r = requests.get(table[town])
     f = open('../katalog_bot/Vtripe/'+town+'_date.xlsx', 'wb')
