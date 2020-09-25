@@ -24,4 +24,4 @@ while 1:
         p.wait()
         pid = p.pid
         print("Start.py")
-    time.sleep(1800)
+    time.sleep(600)

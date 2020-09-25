@@ -17,11 +17,21 @@ def api_ls():
         '79656012318',
         '79872974084',
         '79274226911',
-        '79050212617'
+        '79050212617',
+        '79196237446',
+        '79196237446',
+        '79377772077',
+        '79274180728',
+        '79600323247',
+        '79172290723',
+        '79196224788',
+        '79274358985',
+        '79377771034',
+        
 
     ]
     date='2020-09-23 01:00:00'
-    date=datetime.datetime.now()-datetime.timedelta(seconds=36000)
+    date=datetime.datetime.now()-datetime.timedelta(seconds=10800)
     control_date=date
     messages_array={}
     for number in owner_phone:
@@ -62,10 +72,11 @@ def api_chat():
          '79655807679-1585037693@g.us',
          '79655888066-1485072828@g.us',
          '79655896555-1527783737@g.us',
+         '79046764175-1568197083@g.us'
 
     ]
     date='2020-09-23 01:00:00'
-    date=(datetime.datetime.now()-datetime.timedelta(seconds=36000)).timestamp()
+    date=(datetime.datetime.now()-datetime.timedelta(seconds=10800)).timestamp()
     control_date=date
     messages_array={}
     print('Chat')
