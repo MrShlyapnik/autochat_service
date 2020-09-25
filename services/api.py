@@ -31,7 +31,7 @@ def api_ls():
 
     ]
     date='2020-09-23 01:00:00'
-    date=datetime.datetime.now()-datetime.timedelta(seconds=10800)
+    date=datetime.datetime.now()-datetime.timedelta(seconds=20000)
     control_date=date
     messages_array={}
     for number in owner_phone:
@@ -51,14 +51,12 @@ def api_ls():
         for message in response['data']['messages']:
             message_time=message['created_at'].replace("T", " ").replace("Z", "").split('.')[0]
             message_time=datetime.datetime.strptime(message_time, '%Y-%m-%d %H:%M:%S')
-            print(message_time)
-            print(control_date)
             if message_time>control_date:
                 
-                if message['income']:
-                    # print(message['message'])
-                    print(message['message'])
-                    messages_array[number].append(message['message'])
+                # if message['income']:
+                # print(message['message'])
+                print(message['message'])
+                messages_array[number].append(message['message'])
             else:
                 continue
     return messages_array
@@ -76,7 +74,7 @@ def api_chat():
 
     ]
     date='2020-09-23 01:00:00'
-    date=(datetime.datetime.now()-datetime.timedelta(seconds=10800)).timestamp()
+    date=(datetime.datetime.now()-datetime.timedelta(seconds=20000)).timestamp()
     control_date=date
     messages_array={}
     print('Chat')
