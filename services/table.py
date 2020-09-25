@@ -80,6 +80,7 @@ def table(info,phone, wb):
             '5восточный2': '*Новая сосновка Восточный 2*',
             '6японский': '*Новая сосновка Японский*',
             '7гостевой': '*Новая сосновка Гостевой*',
+            '8казанка':'*Казанка*',
 
     },
     '79655807679-1585037693@g.us':
@@ -199,6 +200,8 @@ def table(info,phone, wb):
     m=0
     day=0
     for house in info[phone]:
+        if house=='8казанка':
+            continue
         stop=True
         if(len(info[phone][house])!=0):
             for month in info[phone][house]:
@@ -228,7 +231,8 @@ def table(info,phone, wb):
                             # print(str(date))
                             
                             while stop==True:
-                                # print(date)
+                                # print(d
+                                # ate)
                                 # print(str(row[col].value).split(' ')[0])
                                 if str(row[col].value).split(' ')[0]==str(date):
                                     # print('1')

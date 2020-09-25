@@ -101,6 +101,7 @@ def parser(message, phone,wb):
             '5восточный2':{},
             '6японский':{},
             '7гостевой':{},
+            '8казанка':{},
 
     },
     '79655807679-1585037693@g.us':
@@ -254,10 +255,7 @@ def parser(message, phone,wb):
     house=""
     month=""
     for word in message.split(" "):
-        if word=='8казанка':
-            house=""
-            month="" 
-            continue       
+             
         if word not in info[phone]:
             if word.lower() not in months:
                 if word.isdigit():

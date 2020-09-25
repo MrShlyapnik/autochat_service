@@ -38,11 +38,12 @@ if (datetime.datetime.now()-last).total_seconds()>=3600:
             print('error')
     messages_array=api_chat()
     print('Load')
-
+    print(len(messages_array))
     for message in messages_array:
-        # print(message)
+        print(messages_array[message])
         try:
             for m in messages_array[message]:
+                print("Parser")
                 parser(m,message, wb)
         except:
             print('error')

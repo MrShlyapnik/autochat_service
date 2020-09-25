@@ -68,6 +68,7 @@ def api_chat():
     date=(datetime.datetime.now()-datetime.timedelta(seconds=36000)).timestamp()
     control_date=date
     messages_array={}
+    print('Chat')
     for number in owner_phone:
         messages_array[number]=[]
         
@@ -76,16 +77,21 @@ def api_chat():
             params=
                 {
                     'chatId':number,
+                    'lastMessageNumber':1,
+                    'last':1
                 }
             
         ).json()
-        # print(response)
+        # print(len(response['messages']))
+        print((control_date))
         for message in response['messages']:
-            message_time=int(message['time'])
+            message_time=float(message['time'])
+            print(message_time)
+            print(message_time>control_date)
             if message_time>control_date:
-                if message['fromMe']==False:
-                    print(message['body'])
-                    messages_array[number].append(message['body'])
+                # if message['fromMe']==False:
+                print(message['body'])
+                messages_array[number].append(message['body'])
             else:
                 continue
     return messages_array
