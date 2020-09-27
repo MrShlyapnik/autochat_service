@@ -415,4 +415,4 @@ def parser(message, phone,wb):
                 if(len(info[phone][h][t])>0):
                     print(str(t)+"             "+str(info[phone][h][t]))
     
-    # table(info, phone,wb)
+    table(info, phone,wb)
