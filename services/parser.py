@@ -18,6 +18,7 @@ def parser(message, phone,wb):
     message=message.replace("Занятые даты!", " ")
     message=message.replace("занятые даты!", " ")
     message=message.replace("!", " ")
+    message=message.replace(";", " ")
     message=message.replace(".", "")
     message=message.replace("🏡", ' ')
     message=message.replace("✅", ' ')
