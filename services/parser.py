@@ -118,6 +118,7 @@ def parser(message, phone,wb):
         "малбас60":{},
         "больш58":{},
         "сред54":{},
+        "новый66":{},
         "нов66":{},
 
     },
@@ -310,7 +311,14 @@ def parser(message, phone,wb):
             'беломорская 54':{},
             'дачная 128':{},
             'утренняя 8а':{},
-            'мичурина117':{}
+            'мичурина117':{},
+            'больш 58':{},
+            'малбас 60':{},
+            'мал 56':{},
+            'нов 66':{},
+            'новый 66':{},
+            'сред 54':{}
+
 
         }
 
@@ -328,37 +336,77 @@ def parser(message, phone,wb):
     if len(info[phone])==1:
         for h in info[phone]:
             house=h
-    for word in message.split(" "):
-    
-        if word not in info[phone]:
-            if word.lower() not in months:
-                if word.isdigit():
-                    if int(word)<=0 or int(word)>=32:
+    if phone=='79600323247':
+        for word in message.split(" "):
+           
+            if word not in info[phone]:
+                if word.lower() not in months:
+                    if word.isdigit():
+                        if int(word)<=0 or int(word)>=32:
+                            continue
+                    else:
                         continue
                 else:
+                    month=word.lower()
                     continue
+            if word in info[phone]:
+                house=word
+                continue
             else:
-                month=word.lower()
-        if word in info[phone]:
-            house=word
-        else:
-            if house!="":
-                if (word.lower() in months):
-                
+                if house!="":
                     # print(house)
-                    # print(month)
-                    try:
-                        print(len(info[phone][house][month]))
-                    except:
-                        info[phone][house][month]=[]
-                
+                    if (word.lower() in months):
+                    
+                       
+                        try:
+                            print(len(info[phone][house][month]))
+                        except:
+                            info[phone][house][month]=[]
+                            house=""
+                    
+                    else:
+                        try:
+                            
+                          
+                            try:
+                                info[phone][house][month].append(word)
+                            except:
+                                info[phone][house][month]=[]
+                                info[phone][house][month].append(word)
+                        except:
+                            print("Error")
+    else:
+        for word in message.split(" "):
+            
+            if word not in info[phone]:
+                if word.lower() not in months:
+                    if word.isdigit():
+                        if int(word)<=0 or int(word)>=32:
+                            continue
+                    else:
+                        continue
                 else:
-                    try:
-                        
-                        
-                        info[phone][house][month].append(word)
-                    except:
-                        pass
+                    month=word.lower()
+            if word in info[phone]:
+                house=word
+            else:
+                if house!="":
+                    if (word.lower() in months):
+                    
+                        # print(house)
+                        # print(month)
+                        try:
+                            print(len(info[phone][house][month]))
+                        except:
+                            info[phone][house][month]=[]
+                    
+                    else:
+                        try:
+                            
+                            
+                            info[phone][house][month].append(word)
+                        except:
+                            pass
     # print(info)
     for h in info[phone]:
         if len(info[phone][h])!=0:
@@ -367,4 +415,4 @@ def parser(message, phone,wb):
                 if(len(info[phone][h][t])>0):
                     print(str(t)+"             "+str(info[phone][h][t]))
     
-    table(info, phone,wb)
+    # table(info, phone,wb)

@@ -100,8 +100,6 @@ def api_chat():
         print((control_date))
         for message in response['messages']:
             message_time=float(message['time'])
-            print(message_time)
-            print(message_time>control_date)
             if message_time>control_date:
                 # if message['fromMe']==False:
                 print(message['body'])
