@@ -166,6 +166,12 @@ def parser(message, phone,wb):
     {
         'литвинова1а':{}
     },
+    '79172591019-1564744795@g.us':
+    {
+        'набережная3':{},
+        'нагоре/141':{},
+        'набережная4':{},
+    }
     }
     # info={
         
@@ -300,8 +306,11 @@ def parser(message, phone,wb):
     # print(message)
     house=""
     month=""
+    if len(info[phone])==1:
+        for h in info[phone]:
+            house=h
     for word in message.split(" "):
-             
+    
         if word not in info[phone]:
             if word.lower() not in months:
                 if word.isdigit():
