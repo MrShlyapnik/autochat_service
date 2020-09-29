@@ -31,11 +31,11 @@ if (datetime.datetime.now()-last).total_seconds()>=900:
 
     for message in messages_array:
         # print(message)
-        try:
-            for m in messages_array[message]:
-                parser(m,message, wb)
-        except:
-            print('error')
+        # try:
+        for m in messages_array[message]:
+            parser(m,message, wb)
+        # except:
+        #     print('error')
     messages_array=api_chat()
     print('Load')
     print(len(messages_array))
