@@ -390,6 +390,6 @@ def table(info,phone, wb):
                                             break
 
                                 col+=1
-                            sheet.update_cell(row_number, 26,str(datetime.datetime.now().date()))
+                            sheet.update_cell(row_number+1, 27,str(datetime.datetime.now().date()))
                             break
 
