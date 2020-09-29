@@ -288,7 +288,7 @@ def table(info,phone, wb):
 
     # wb=openpyxl.load_workbook(town+'.xlsx',  data_only=True)
     date_list=wb["даты"]
-    sheet=sheet.get_worksheet(5)
+    sheet=sheet.get_worksheet(0)
     month_code={
         'январь':1,
         'февраль':2,
@@ -341,6 +341,7 @@ def table(info,phone, wb):
                             # print(str(date))
                             
                             while stop==True:
+                                row_number=-1
                                 # print(d
                                 # ate)
                                 # print(str(row[col].value).split(' ')[0])
@@ -389,5 +390,6 @@ def table(info,phone, wb):
                                             break
 
                                 col+=1
+                            sheet.update_cell(row_number, 26,datetime.datetime.now().date())
                             break
 
