@@ -339,7 +339,7 @@ def table(info,phone, wb):
                                 continue
                             # print(str(row[col].value).split(' ')[0])
                             # print(str(date))
-                            
+                            update_flag=0
                             while stop==True:
                                 row_number=-1
                                 # print(d
@@ -381,6 +381,7 @@ def table(info,phone, wb):
                                             while limit==True:
                                                 try:
                                                     service.spreadsheets().batchUpdate(spreadsheetId = '1JIstqYbaPS6ZkzbH7AmZ0xeb7VbMpmA6GrhPiZ5r5iY', body=DATA).execute()
+                                                    update_flag=1
                                                     limit=False
                                                 except:
                                                     time.sleep(5)
@@ -390,6 +391,7 @@ def table(info,phone, wb):
                                             break
 
                                 col+=1
-                            sheet.update_cell(row_number+1, 27,str(datetime.datetime.now().date()))
+                            if update_flag==1:
+                                sheet.update_cell(row_number+1, 27,str(datetime.datetime.now().date()))
                             break
 
