@@ -45,7 +45,7 @@ if (datetime.datetime.now()-last).total_seconds()>=900:
         # try:
         for m in messages_array[message]:
             print("Parser")
-             if m!=None:
+            if m!=None:
                 parser(m,message, wb)
         # except:
         #     print('error')
