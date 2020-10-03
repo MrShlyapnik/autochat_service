@@ -346,51 +346,54 @@ def table(info,phone, wb):
                                 # ate)
                                 # print(str(row[col].value).split(' ')[0])
                                 # print(date)
-                                if str(row[col].value).split(' ')[0]==str(date):
-                                    # print('1')
-                                    row_number=-1
-                                    for r in date_list.rows:
-                                        row_number+=1
-                                        # print("2")
-                                        # print(r[441].value)
-                                        # print(house)
-                                        if str(r[27].value)==full_name[phone][house]:
-                                            DATA = {'requests': [{'repeatCell':
-                                                    {'range': 
-                                                        { 
-                                                            "sheetId":955783345,
-                                                        'startRowIndex': row_number, # номер строки (нумерация с 0) с которой включительно будет применено форматирование
-                                                        'endRowIndex': row_number+1, # номер строки до которой будет применено форматирование, не включительно
-                                                            
-                                                        'startColumnIndex': col, # номер столбца (нумерация с 0)…
-                                                        'endColumnIndex': col+1
-                                                        },
-                                                    
-                                                    'cell':  {'userEnteredFormat': {'backgroundColor': {'red': 0,
-                                                                                                        'green':0,
-                                                                                                        'blue':128,
-                                                    }}},
+                                try:
+                                    if str(row[col].value).split(' ')[0]==str(date):
+                                        # print('1')
+                                        row_number=-1
+                                        for r in date_list.rows:
+                                            row_number+=1
+                                            # print("2")
+                                            # print(r[441].value)
+                                            # print(house)
+                                            if str(r[27].value)==full_name[phone][house]:
+                                                DATA = {'requests': [{'repeatCell':
+                                                        {'range': 
+                                                            { 
+                                                                "sheetId":955783345,
+                                                            'startRowIndex': row_number, # номер строки (нумерация с 0) с которой включительно будет применено форматирование
+                                                            'endRowIndex': row_number+1, # номер строки до которой будет применено форматирование, не включительно
+                                                                
+                                                            'startColumnIndex': col, # номер столбца (нумерация с 0)…
+                                                            'endColumnIndex': col+1
+                                                            },
+                                                        
+                                                        'cell':  {'userEnteredFormat': {'backgroundColor': {'red': 0,
+                                                                                                            'green':0,
+                                                                                                            'blue':128,
+                                                        }}},
 
-                                                    'fields': 'userEnteredFormat', # другие параметры форматирования ячейки будут сброшены
-                                                }}
-                                                ]}
-                                            if r[col].fill.fgColor.rgb=="FF38761D" or r[col].fill.fgColor.rgb=="FF93C47D" or r[col].fill.fgColor.rgb == 'FF000080':
+                                                        'fields': 'userEnteredFormat', # другие параметры форматирования ячейки будут сброшены
+                                                    }}
+                                                    ]}
+                                                if r[col].fill.fgColor.rgb=="FF38761D" or r[col].fill.fgColor.rgb=="FF93C47D" or r[col].fill.fgColor.rgb == 'FF000080':
+                                                    stop=False
+                                                    break
+                                                limit=True
+                                                while limit==True:
+                                                    try:
+                                                        service.spreadsheets().batchUpdate(spreadsheetId = '1JIstqYbaPS6ZkzbH7AmZ0xeb7VbMpmA6GrhPiZ5r5iY', body=DATA).execute()
+                                                        update_flag=1
+                                                        limit=False
+                                                    except:
+                                                        time.sleep(5)
+                                                
+                                                # print('3')
                                                 stop=False
                                                 break
-                                            limit=True
-                                            while limit==True:
-                                                try:
-                                                    service.spreadsheets().batchUpdate(spreadsheetId = '1JIstqYbaPS6ZkzbH7AmZ0xeb7VbMpmA6GrhPiZ5r5iY', body=DATA).execute()
-                                                    update_flag=1
-                                                    limit=False
-                                                except:
-                                                    time.sleep(5)
-                                            
-                                            # print('3')
-                                            stop=False
-                                            break
 
-                                col+=1
+                                    col+=1
+                                except:
+                                    stop=False
                             if update_flag==1:
                                 sheet.update_cell(row_number+1, 27,str(datetime.datetime.now().date()))
                             break
