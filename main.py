@@ -33,7 +33,8 @@ if (datetime.datetime.now()-last).total_seconds()>=900:
         # print(message)
         # try:
         for m in messages_array[message]:
-            parser(m,message, wb)
+            if m!=None:
+                parser(m,message, wb)
         # except:
         #     print('error')
     messages_array=api_chat()
@@ -44,7 +45,8 @@ if (datetime.datetime.now()-last).total_seconds()>=900:
         # try:
         for m in messages_array[message]:
             print("Parser")
-            parser(m,message, wb)
+             if m!=None:
+                parser(m,message, wb)
         # except:
         #     print('error')
 
