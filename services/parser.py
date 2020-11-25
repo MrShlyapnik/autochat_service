@@ -161,6 +161,14 @@ def parser(message, phone,wb):
     {
         'левченко':{}
     },
+    '79872975991':
+    {
+        'лазаревка':{}
+    },
+    '79053129769':
+    {
+        'салмачи6':{}
+    },
     '79872971476-1481554579@g.us':
     {
         'к1':{},
@@ -385,6 +393,7 @@ def parser(message, phone,wb):
     if len(info[phone])==1:
         for h in info[phone]:
             house=h
+            
     if phone=='79600323247' or phone=='79178670299':
         for word in message.split(" "):
            

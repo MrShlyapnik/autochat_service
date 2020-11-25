@@ -35,6 +35,8 @@ def api_ls():
         '79510675675',
         '79625515760',
         '79172795166',
+        '79872975991',
+        '79053129769',
         
 
     ]
@@ -55,6 +57,9 @@ def api_ls():
         id=int(id['data']['conversation']['external_id'])
         response=requests.get("https://api.pact.im/p1/companies/"+pact_id+"/conversations/"+str(id)+"/messages?sort_direction=desc", headers=headers).json()
         print('pact')
+        if number=="79625515760":
+            print("=================")
+            print(response['data']['messages'])
         print(len(response['data']['messages']))
         for message in response['data']['messages']:
             message_time=message['created_at'].replace("T", " ").replace("Z", "").split('.')[0]
@@ -104,22 +109,32 @@ def api_chat():
             params=
                 {
                     "chatId":number,
-                    "lastMessageNumber":1,
+                    "lastMessageNumber":100,
                     "last":1,
+                    # "min_time": control_date,
                 } 
             
         ).json()
         # print(len(response['messages']))
+        # if number=="79872360002-1599913260@g.us":
+        #         print("=========================")
+        #         print(response)
+            
+        #         print(response['messages'])
         print((control_date))
         for message in response['messages']:
             message_time=float(message['time'])
             if message_time>control_date:
                 # if message['fromMe']==False:
+                if number=="79872360002-1599913260@g.us":
+                    print("=========================")
                 print(message['body'])
                 messages_array[number].append(message['body'])
             else:
                 continue
     return messages_array
 
+    
+    
     
     
