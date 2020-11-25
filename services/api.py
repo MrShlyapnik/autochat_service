@@ -103,10 +103,10 @@ def api_chat():
            'https://api.chat-api.com/instance175111/messages?token=s5xri89wo7jl37dk',
             params=
                 {
-                    'chatId':number,
-                    'lastMessageNumber':1,
-                    'last':1
-                }
+                    "chatId":number,
+                    "lastMessageNumber":1,
+                    "last":1,
+                } 
             
         ).json()
         # print(len(response['messages']))
