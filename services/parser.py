@@ -490,11 +490,11 @@ def parser(message, phone,wb):
                         except:
                             pass
     # print(info)
-    for h in info[phone]:
-        if len(info[phone][h])!=0:
-            print(h+':    ')
-            for t in info[phone][h]:
-                if(len(info[phone][h][t])>0):
-                    print(str(t)+"             "+str(info[phone][h][t]))
+    # for h in info[phone]:
+    #     if len(info[phone][h])!=0:
+    #         print(h+':    ')
+    #         for t in info[phone][h]:
+    #             if(len(info[phone][h][t])>0):
+    #                 print(str(t)+"             "+str(info[phone][h][t]))
     
     table(info, phone,wb)

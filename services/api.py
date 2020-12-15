@@ -49,8 +49,10 @@ def api_ls():
     date=datetime.datetime.now()-datetime.timedelta(seconds=20000)
     control_date=date
     messages_array={}
+    
     for number in owner_phone:
         print(number)
+        count=0
         messages_array[number]=[]
         data={
         'provider':'whatsapp',
@@ -66,11 +68,12 @@ def api_ls():
             message_time=message['created_at'].replace("T", " ").replace("Z", "").split('.')[0]
             message_time=datetime.datetime.strptime(message_time, '%Y-%m-%d %H:%M:%S')
             if message_time>control_date:
-                
+                count+=1
                 
                 messages_array[number].append(message['message'])
             else:
                 continue
+        print("Количество новых сообщений за последнее время "+str(count))
     return messages_array
 
 
