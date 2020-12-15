@@ -67,7 +67,7 @@ def api_ls():
         for message in response['data']['messages']:
             message_time=message['created_at'].replace("T", " ").replace("Z", "").split('.')[0]
             message_time=datetime.datetime.strptime(message_time, '%Y-%m-%d %H:%M:%S')
-            print(message_time)
+            # print(message_time)
            
             if message_time>control_date:
                 count+=1
