@@ -27,7 +27,7 @@ if (datetime.datetime.now()-last).total_seconds()>=900:
 
     wb=openpyxl.load_workbook(town+'.xlsx',  data_only=True)
     messages_array=api_ls()
-    print('Load')
+    print('Load ls')
 
     for message in messages_array:
         # print(message)
@@ -38,13 +38,12 @@ if (datetime.datetime.now()-last).total_seconds()>=900:
         # except:
         #     print('error')
     messages_array=api_chat()
-    print('Load')
+    print('Load chat')
     print(len(messages_array))
     for message in messages_array:
         print(messages_array[message])
         # try:
         for m in messages_array[message]:
-            print("Parser")
             if m!=None:
                 parser(m,message, wb)
         # except:

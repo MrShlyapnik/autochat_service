@@ -430,5 +430,6 @@ def table(info,phone, wb):
                                     stop=False
                             if update_flag==1:
                                 sheet.update_cell(row_number+1, 27,str(datetime.datetime.now().date()))
+                                print(house+' Update')
                             break
 
