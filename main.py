@@ -3,60 +3,45 @@ from services.api import api_ls, api_chat
 import requests
 import datetime
 import openpyxl
-table={
-    'Казань':   'https://docs.google.com/spreadsheets/d/1JIstqYbaPS6ZkzbH7AmZ0xeb7VbMpmA6GrhPiZ5r5iY/export?format=xlsx&id=1JIstqYbaPS6ZkzbH7AmZ0xeb7VbMpmA6GrhPiZ5r5iY',
-    'Москва':   'https://docs.google.com/spreadsheets/d/1dhTz3mTVYd1y9KqdCd1KUbY0AmyaZhVdOQ6qTX9b9C4/export?format=xlsx&id=1dhTz3mTVYd1y9KqdCd1KUbY0AmyaZhVdOQ6qTX9b9C4',
-    }
-# messages_array=api_ls()
+table = {
+    'Казань': 'https://docs.google.com/spreadsheets/d/1JIstqYbaPS6ZkzbH7AmZ0xeb7VbMpmA6GrhPiZ5r5iY/export?format=xlsx&id=1JIstqYbaPS6ZkzbH7AmZ0xeb7VbMpmA6GrhPiZ5r5iY',
+    'Москва': 'https://docs.google.com/spreadsheets/d/1dhTz3mTVYd1y9KqdCd1KUbY0AmyaZhVdOQ6qTX9b9C4/export?format=xlsx&id=1dhTz3mTVYd1y9KqdCd1KUbY0AmyaZhVdOQ6qTX9b9C4',
+}
+town = 'Казань'
 
-f=open('time.txt','r')
-last=f.read()
+f = open('time.txt', 'r')
+last_update = f.read()
 f.close()
-print(last)
-last=last.replace('\n', '')
-last=datetime.datetime.strptime(last, '%Y-%m-%d %H:%M:%S')
-print("Check date")
-if (datetime.datetime.now()-last).total_seconds()>=900:
-    print("Start main")
-    town='Казань'
+
+last_update = last_update.replace('\n', '')
+
+last_update = datetime.datetime.strptime(last_update, '%Y-%m-%d %H:%M:%S')
+
+if (datetime.datetime.now() - last_update).total_seconds() >= 900:
+
     r = requests.get(table[town])
-    print('Load')
-    f = open(town+'.xlsx', 'wb')
+    f = open(town + '.xlsx', 'wb')
     f.write(r.content)
     f.close()
 
-    wb=openpyxl.load_workbook(town+'.xlsx',  data_only=True)
-    messages_array=api_ls()
-    print('Load ls')
+    wb = openpyxl.load_workbook(town + '.xlsx', data_only=True)
 
-    for message in messages_array:
-        # print(message)
-        # try:
-        for m in messages_array[message]:
-            if m!=None:
-                parser(m,message, wb)
-        # except:
-        #     print('error')
-    messages_array=api_chat()
-    print('Load chat')
-    print(len(messages_array))
-    for message in messages_array:
-        print(messages_array[message])
-        # try:
-        for m in messages_array[message]:
-            if m!=None:
-                parser(m,message, wb)
-        # except:
-        #     print('error')
+    messages_list = api_ls()
+
+    for message in messages_list:
+        for m in messages_list[message]:
+            if m is not None:
+                parser(m, message, wb)
+    messages_list = api_chat()
+    for message in messages_list:
+        for m in messages_list[message]:
+            if m is not None:
+                parser(m, message, wb)
 
     r = requests.get(table[town])
-    f = open('../katalog_bot/Vtripe/'+town+'_date.xlsx', 'wb')
+    f = open('../katalog_bot/Vtripe/' + town + '_date.xlsx', 'wb')
     f.write(r.content)
     f.close()
-    f=open('time.txt','w')
+    f = open('time.txt', 'w')
     f.write(str(datetime.datetime.now()).split('.')[0])
     f.close()
-    print('End')
-
-
-
