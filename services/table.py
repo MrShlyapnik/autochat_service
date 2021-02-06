@@ -61,8 +61,8 @@ def tableUpdate(DATA, service):
 
 def tableDataUpdate(row_number, sheet, house):
     """Обновление последней даты обновления дома"""
-    sheet.update_cell(
-        row_number + 1, 27,
+    print(sheet)
+    sheet.update_cell(row_number + 1, 27,
         str(datetime.datetime.now().date()))
     print(house + ' Update')
 
