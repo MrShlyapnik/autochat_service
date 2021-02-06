@@ -22,7 +22,7 @@ def api_ls():
     ]
     # Формат даты  date='2020-09-23 01:00:00'
 
-    date_period = (datetime.datetime.now() - datetime.timedelta(seconds=10000))
+    date_period = (datetime.datetime.now() - datetime.timedelta(seconds=30000))
     control_date = date_period
 
     messages_array = {}
