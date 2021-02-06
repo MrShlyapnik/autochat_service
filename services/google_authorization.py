@@ -24,5 +24,5 @@ def google_data():
 
     file = gspread.authorize(credentials)  # authenticate with Google
     sheet = file.open_by_url(
-        "https://docs.google.com/spreadsheets/d/1JIstqYbaPS6ZkzbH7AmZ0xeb7VbMpmA6GrhPiZ5r5iY/edit#gid=955783345")
+        "https://docs.google.com/spreadsheets/d/1JIstqYbaPS6ZkzbH7AmZ0xeb7VbMpmA6GrhPiZ5r5iY/edit#gid=955783345").get_worksheet(0)
     return [service, sheet]
