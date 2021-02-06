@@ -45,3 +45,4 @@ if (datetime.datetime.now() - last_update).total_seconds() >= 900:
     f = open('time.txt', 'w')
     f.write(str(datetime.datetime.now()).split('.')[0])
     f.close()
+    print("End")
