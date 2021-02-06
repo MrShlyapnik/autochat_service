@@ -55,6 +55,7 @@ def api_ls():
             if message_time > control_date:
                 count += 1
                 messages_array[number].append(message['message'])
+                print(message_time)
                 current_time = datetime.datetime.fromtimestamp(message_time)
                 print("Время сообщения " + str(current_time))
             else:
