@@ -77,7 +77,7 @@ def api_chat():
         '79272447447-1580997756@g.us', '79655995118-1496687048@g.us',
     ]
     date_period = (datetime.datetime.now() - datetime.timedelta(
-        seconds=20000)).timestamp()
+        seconds=10000)).timestamp()
     control_date = date_period
     messages_array = {}
     for number in owner_phone:
