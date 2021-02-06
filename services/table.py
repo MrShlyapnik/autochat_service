@@ -137,7 +137,7 @@ def table(info, phone, wb):
             current_date = getCurrentDate(info, phone, house)
         else:
            current_date = (datetime.datetime.now() - datetime.timedelta(days=2)).date()
-
+        print(current_date)
         if current_date < datetime.datetime.now().date():
             # Если найденная дата меньше сегодняшней,
             # то пропускаем ее
