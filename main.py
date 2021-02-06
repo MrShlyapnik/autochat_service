@@ -26,12 +26,12 @@ if (datetime.datetime.now() - last_update).total_seconds() >= 900:
 
     wb = openpyxl.load_workbook(town + '.xlsx', data_only=True)
 
-    messages_list = api_ls()
+    # messages_list = api_ls()
 
-    for message in messages_list:
-        for m in messages_list[message]:
-            if m is not None:
-                parser(m, message, wb)
+    # for message in messages_list:
+    #     for m in messages_list[message]:
+    #         if m is not None:
+    #             parser(m, message, wb)
     messages_list = api_chat()
     for message in messages_list:
         for m in messages_list[message]:

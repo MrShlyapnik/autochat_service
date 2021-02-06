@@ -62,9 +62,16 @@ def tableUpdate(DATA, service):
 def tableDataUpdate(row_number, sheet, house):
     """Обновление последней даты обновления дома"""
     print(sheet)
-    sheet.update_cell(row_number + 1, 27,
-        str(datetime.datetime.now().date()))
-    print(house + ' Update')
+    quot_limit = True
+    while quot_limit:
+        try:
+            sheet.update_cell(row_number + 1, 27,
+                str(datetime.datetime.now().date()))
+            print(house + ' Update')
+            quot_limit = False
+        except BaseException:
+            time.sleep(5)
+    
 
 
 def getCurrentDate(info, phone, house):
