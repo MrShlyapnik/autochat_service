@@ -117,8 +117,7 @@ def booking_update(row_number, col, service, row_, sheet, house,
             return True
         update_flag = 1
         tableUpdate(DATA, service)
-        tableDataUpdate(row_number, sheet, house) if \
-            update_flag == 1 else 1
+        tableDataUpdate(row_number, sheet, house)
         return True
     return False
 
