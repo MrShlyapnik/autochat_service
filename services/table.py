@@ -100,6 +100,7 @@ def getCurrentDate(info, phone, house):
                 last_valid_day = int(day_)
                 day = int(day_)
                 current_date = datetime.date(year, month, day)
+                print(current_date)
                 return current_date
 
 
