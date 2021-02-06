@@ -86,6 +86,7 @@ def getCurrentDate(info, phone, house):
     year = 0
     month = 0
     day = 0
+    current_date_list=[]
     for month_ in info[phone][house]:
         if len(info[phone][house][month_]) != 0:
             month = month_code[month_]
@@ -100,8 +101,8 @@ def getCurrentDate(info, phone, house):
                 last_valid_day = int(day_)
                 day = int(day_)
                 current_date = datetime.date(year, month, day)
-                return current_date
-
+                current_date_list.append(current_date)
+    return current_date_list
 
 def booking_update(row_number, col, service, row_, sheet, house,
                    excel_house, full_name):
@@ -132,38 +133,40 @@ def table(info, phone, wb):
         if house == '8казанка':
             continue
         if len(info[phone][house]) != 0:
-            current_date = getCurrentDate(info, phone, house)
+            current_date_list = getCurrentDate(info, phone, house)
         else:
-           current_date = (datetime.datetime.now() - datetime.timedelta(days=2)).date()
-        try:
-            if current_date < datetime.datetime.now().date():
-                # Если найденная дата меньше сегодняшней,
-                # то пропускаем ее
-                continue
-        except:
             continue
-        row_skeep = 0
-        col = 30
-        stop = False
-        date_list = wb["даты"]
-        print(house+' '+str(current_date))
-        for row in date_list.rows:
-            if row_skeep == 0:
-                row_skeep += 1
+            #current_date = (datetime.datetime.now() - datetime.timedelta(days=2)).date()
+        for current_date in current_date_list:
+            try:
+                if current_date < datetime.datetime.now().date():
+                    # Если найденная дата меньше сегодняшней,
+                    # то пропускаем ее
+                    continue
+            except:
                 continue
-            while not stop:
-                excel_data = str(row[col].value).split(' ')[0]
+            row_skeep = 0
+            col = 30
+            stop = False
+            date_list = wb["даты"]
+            print(house+' '+str(current_date))
+            for row in date_list.rows:
+                if row_skeep == 0:
+                    row_skeep += 1
+                    continue
+                while not stop:
+                    excel_data = str(row[col].value).split(' ')[0]
 
-                if excel_data == str(current_date):
-                    row_number = -1
+                    if excel_data == str(current_date):
+                        row_number = -1
 
-                    for row_ in date_list.rows:
-                        row_number += 1
+                        for row_ in date_list.rows:
+                            row_number += 1
 
-                        if booking_update(row_number, col, service, row_,
-                                          sheet, house, row_[27], full_name[
-                                              phone][house]):
-                            stop = True
-                            break
-                col += 1
-            break
+                            if booking_update(row_number, col, service, row_,
+                                            sheet, house, row_[27], full_name[
+                                                phone][house]):
+                                stop = True
+                                break
+                    col += 1
+                break
