@@ -121,4 +121,5 @@ def parser(message, phone, wb):
                             info[phone][house][month].append(word)
                         except BaseException:
                             pass
+    print(info[phone])
     table(info, phone, wb)
