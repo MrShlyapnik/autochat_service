@@ -133,9 +133,10 @@ def table(info, phone, wb):
     for house in info[phone]:
         if house == '8казанка':
             continue
-        current_date = getCurrentDate(info, phone, house) if len(info[phone][
-            house]) != 0 else (datetime.datetime.today() -
-                               datetime.timedelta(days=2)).date()
+        if len(info[phone][house]) != 0:
+            current_date = getCurrentDate(info, phone, house)
+        else:
+           current_date = (datetime.datetime.now() - datetime.timedelta(days=2)).date()
 
         if current_date < datetime.datetime.now().date():
             # Если найденная дата меньше сегодняшней,
