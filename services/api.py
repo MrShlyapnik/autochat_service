@@ -55,7 +55,7 @@ def api_ls():
             if message_time > control_date:
                 count += 1
                 messages_array[number].append(message['message'])
-                current_time = datetime.datetime.fromtimestamp(message_time)
+                current_time = datetime.datetime.fromtimestamp(float(message_time))
                 print("Время сообщения " + str(current_time))
             else:
                 continue
@@ -99,7 +99,7 @@ def api_chat():
             if message_time > control_date:
                 messages_array[number].append(message['body'])
                 message_count += 1
-                current_time = datetime.datetime.fromtimestamp(message_time)
+                current_time = datetime.datetime.fromtimestamp(float(message_time))
                 print("Время сообщения " + str(current_time))
             else:
                 continue
