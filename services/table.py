@@ -69,7 +69,7 @@ def tableDataUpdate(row_number, sheet, house):
                 str(datetime.datetime.now().date()))
             print(house + ' Update')
             quot_limit = False
-        except BaseException:
+        except:
             print("Quot limit")
             time.sleep(5)
     
