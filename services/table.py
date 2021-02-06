@@ -100,7 +100,6 @@ def getCurrentDate(info, phone, house):
                 last_valid_day = int(day_)
                 day = int(day_)
                 current_date = datetime.date(year, month, day)
-                print(current_date)
                 return current_date
 
 
@@ -136,7 +135,6 @@ def table(info, phone, wb):
             current_date = getCurrentDate(info, phone, house)
         else:
            current_date = (datetime.datetime.now() - datetime.timedelta(days=2)).date()
-        print(current_date)
         try:
             if current_date < datetime.datetime.now().date():
                 # Если найденная дата меньше сегодняшней,
