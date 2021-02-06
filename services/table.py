@@ -148,6 +148,7 @@ def table(info, phone, wb):
         col = 30
         stop = False
         date_list = wb["даты"]
+        print(house+' '+str(current_date))
         for row in date_list.rows:
             if row_skeep == 0:
                 row_skeep += 1
