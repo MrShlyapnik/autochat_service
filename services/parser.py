@@ -36,6 +36,7 @@ def parser(message, phone, wb):
     message = message.replace("⛔", ' ')
     message = message.replace("🧸", ' ')
     message = message.replace("🔥", ' ')
+    message = message.replace("🏘", ' ')
     message = message.replace("\n", " ")
     message = message.replace(":", " ")
     message = message.replace(",", " ")
