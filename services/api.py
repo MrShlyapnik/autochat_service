@@ -2,7 +2,7 @@ import requests
 import datetime
 
 
-def api_ls():
+def api_ls(period):
     headers = {
         'X-Private-Api-Token':
             '0505dcbab77f0071ce254a246f2b8b89c07ce0ae0cd919ece7bbea373c37c7301a4ecc3a0e2f39e5fb60e2d7471fb1e692369ca9e29978191b67f20b1260c9c2',
@@ -22,7 +22,7 @@ def api_ls():
     ]
     # Формат даты  date='2020-09-23 01:00:00'
 
-    date_period = (datetime.datetime.now() - datetime.timedelta(seconds=30000))
+    date_period = (datetime.datetime.now() - datetime.timedelta(seconds=period))
     control_date = date_period
 
     messages_array = {}
@@ -65,7 +65,7 @@ def api_ls():
     return messages_array
 
 
-def api_chat():
+def api_chat(period):
     owner_phone = [
         '79872971476-1481554579@g.us', '79178767741-1419363809@g.us',
         '79655807679-1585037693@g.us', '79655888066-1485072828@g.us',
@@ -77,7 +77,7 @@ def api_chat():
         '79272447447-1580997756@g.us', '79655995118-1496687048@g.us',
     ]
     date_period = (datetime.datetime.now() - datetime.timedelta(
-        seconds=30000)).timestamp()
+        seconds=period)).timestamp()
     control_date = date_period
     messages_array = {}
     for number in owner_phone:

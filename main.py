@@ -25,24 +25,27 @@ f.write(r.content)
 f.close()
 
 wb = openpyxl.load_workbook(town + '.xlsx', data_only=True)
+period=[
+    10000, 20000, 30000
+]
+for per in period:
+    messages_list = api_ls(per)
 
-messages_list = api_ls()
+    for message in messages_list:
+        for m in messages_list[message]:
+            if m is not None:
+                parser(m, message, wb)
+    messages_list = api_chat(per)
+    for message in messages_list:
+        for m in messages_list[message]:
+            if m is not None:
+                parser(m, message, wb)
 
-for message in messages_list:
-    for m in messages_list[message]:
-        if m is not None:
-            parser(m, message, wb)
-messages_list = api_chat()
-for message in messages_list:
-    for m in messages_list[message]:
-        if m is not None:
-            parser(m, message, wb)
-
-r = requests.get(table[town])
-f = open('../katalog_bot/Vtripe/' + town + '_date.xlsx', 'wb')
-f.write(r.content)
-f.close()
-f = open('time.txt', 'w')
-f.write(str(datetime.datetime.now()).split('.')[0])
-f.close()
-print("End")
+    r = requests.get(table[town])
+    f = open('../katalog_bot/Vtripe/' + town + '_date.xlsx', 'wb')
+    f.write(r.content)
+    f.close()
+    f = open('time.txt', 'w')
+    f.write(str(datetime.datetime.now()).split('.')[0])
+    f.close()
+    print("End")
