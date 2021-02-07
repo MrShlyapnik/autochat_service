@@ -17,32 +17,32 @@ last_update = last_update.replace('\n', '')
 
 last_update = datetime.datetime.strptime(last_update, '%Y-%m-%d %H:%M:%S')
 
-if (datetime.datetime.now() - last_update).total_seconds() >= 900:
+# if (datetime.datetime.now() - last_update).total_seconds() >= 300:
 
-    r = requests.get(table[town])
-    f = open(town + '.xlsx', 'wb')
-    f.write(r.content)
-    f.close()
+r = requests.get(table[town])
+f = open(town + '.xlsx', 'wb')
+f.write(r.content)
+f.close()
 
-    wb = openpyxl.load_workbook(town + '.xlsx', data_only=True)
+wb = openpyxl.load_workbook(town + '.xlsx', data_only=True)
 
-    messages_list = api_ls()
+messages_list = api_ls()
 
-    for message in messages_list:
-        for m in messages_list[message]:
-            if m is not None:
-                parser(m, message, wb)
-    messages_list = api_chat()
-    for message in messages_list:
-        for m in messages_list[message]:
-            if m is not None:
-                parser(m, message, wb)
+for message in messages_list:
+    for m in messages_list[message]:
+        if m is not None:
+            parser(m, message, wb)
+messages_list = api_chat()
+for message in messages_list:
+    for m in messages_list[message]:
+        if m is not None:
+            parser(m, message, wb)
 
-    r = requests.get(table[town])
-    f = open('../katalog_bot/Vtripe/' + town + '_date.xlsx', 'wb')
-    f.write(r.content)
-    f.close()
-    f = open('time.txt', 'w')
-    f.write(str(datetime.datetime.now()).split('.')[0])
-    f.close()
-    print("End")
+r = requests.get(table[town])
+f = open('../katalog_bot/Vtripe/' + town + '_date.xlsx', 'wb')
+f.write(r.content)
+f.close()
+f = open('time.txt', 'w')
+f.write(str(datetime.datetime.now()).split('.')[0])
+f.close()
+print("End")
