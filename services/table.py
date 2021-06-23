@@ -163,18 +163,21 @@ def table(info, phone, wb):
                     row_skeep += 1
                     continue
                 while not stop:
-                    excel_data = str(row[col].value).split(' ')[0]
+                    try:
+                        excel_data = str(row[col].value).split(' ')[0]
 
-                    if excel_data == str(current_date):
-                        row_number = -1
+                        if excel_data == str(current_date):
+                            row_number = -1
 
-                        for row_ in date_list.rows:
-                            row_number += 1
+                            for row_ in date_list.rows:
+                                row_number += 1
 
-                            if booking_update(row_number, col, service, row_,
-                                            sheet, house, row_[27], full_name[
-                                                phone][house]):
-                                stop = True
-                                break
+                                if booking_update(row_number, col, service, row_,
+                                                sheet, house, row_[27], full_name[
+                                                    phone][house]):
+                                    stop = True
+                                    break
+                    except:
+                        pass
                     col += 1
                 break
