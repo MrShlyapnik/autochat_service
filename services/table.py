@@ -178,6 +178,6 @@ def table(info, phone, wb):
                                     stop = True
                                     break
                     except:
-                        pass
+                        break
                     col += 1
                 break
