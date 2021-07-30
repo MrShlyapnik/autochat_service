@@ -127,5 +127,5 @@ def parser(message, phone, wb):
                             pass
     print(info[phone])
 
-    bot.send_message(381666837, info[phone])
+    bot.send_message(381666837, str(info[phone]))
     table(info, phone, wb)
