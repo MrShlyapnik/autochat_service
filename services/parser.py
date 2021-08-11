@@ -9,6 +9,7 @@ from .info1 import INFO1
 token = '1155265832:AAEkQP-ces-BicmhsIZVRk9HW3Envsg6n0Q'
 bot = telebot.TeleBot(token)
 def parser(message, phone, wb):
+    print('Parser {}'.format(phone))
     text = message
     months = [
         'январь',
@@ -27,7 +28,7 @@ def parser(message, phone, wb):
     message = text.lower()
     for month in months:
         message = message.replace(month, ' ' + month + ' ')
-    message = message.replace("-", "")
+    message = message.replace("-", " ")
     message = message.replace("Занятые даты", " ")
     message = message.replace("Занятые даты!", " ")
     message = message.replace("занятые даты!", " ")
@@ -39,6 +40,7 @@ def parser(message, phone, wb):
     message = message.replace("⛔", ' ')
     message = message.replace("🧸", ' ')
     message = message.replace("🔥", ' ')
+    message = message.replace("🌅", ' ')
     message = message.replace("🏘", ' ')
     message = message.replace("\n", " ")
     message = message.replace(":", " ")
@@ -100,7 +102,14 @@ def parser(message, phone, wb):
                         except BaseException:
                             print("Error")
     else:
+        
         for word in message.split(" "):
+            if phone in '79655888066-1485072828@g.us':
+                for h in info[phone]:
+                    if h in word:
+                        word = h
+                        break
+            
             if word not in info[phone]:
                 if word.lower() not in months:
                     if word.isdigit():
@@ -110,6 +119,7 @@ def parser(message, phone, wb):
                         continue
                 else:
                     month = word.lower()
+            
             if word in info[phone]:
                 house = word
             else:
@@ -125,7 +135,7 @@ def parser(message, phone, wb):
                             info[phone][house][month].append(word)
                         except BaseException:
                             pass
-    print(info[phone])
+    # print(info[phone])
 
     bot.send_message(381666837, str(info[phone]))
     table(info, phone, wb)

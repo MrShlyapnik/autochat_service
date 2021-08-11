@@ -131,7 +131,6 @@ def booking_update(row_number, col, service, row_, sheet, house,
 
 
 def table(info, phone, wb):
-
     full_name = FULL_NAME
     google_table = google_data()
     service = google_table[0]
@@ -157,7 +156,7 @@ def table(info, phone, wb):
             col = 30
             stop = False
             date_list = wb["даты"]
-            print(house+' '+str(current_date))
+            # print(house+' '+str(current_date))
             for row in date_list.rows:
                 if row_skeep == 0:
                     row_skeep += 1
@@ -168,14 +167,14 @@ def table(info, phone, wb):
 
                         if excel_data == str(current_date):
                             row_number = -1
-
                             for row_ in date_list.rows:
                                 row_number += 1
-
+                                
                                 if booking_update(row_number, col, service, row_,
                                                 sheet, house, row_[27], full_name[
                                                     phone][house]):
                                     stop = True
+                                   
                                     break
                     except:
                         break
