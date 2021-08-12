@@ -137,6 +137,7 @@ def table(info, phone, wb):
     sheet = google_table[1]
 
     for house in info[phone]:
+        print(house)
         if house == '8казанка':
             continue
         if len(info[phone][house]) != 0:
